@@ -1,21 +1,21 @@
-import { SafeAreaView } from 'react-native';
-import React, { useLayoutEffect } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { View } from 'react-native';
+import React, { type FC } from 'react';
+import type { PropsWithNavigation, RootStackParamList } from '../types';
+import Button from '../components/Button';
 
-const HomeScreen = () => {
-  const navigation = useNavigation();
+const ButtonClassNames = 'max-w-[250px]';
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerShown: false,
-    });
-  }, []);
-
+const HomeScreen: FC<PropsWithNavigation> = ({ navigation }) => {
+  const navigateTo = (direction: keyof RootStackParamList) => {
+    return () => navigation.navigate(direction);
+  }
   return (
-    <SafeAreaView className="flex-1 items-center justify-center gap-8 p-16">
-      <h1 className="text-5xl tracking-wide">РосМорПорт</h1>
-      <h2 className="uppercase text-2xl tracking-wide">СЗ-503</h2>
-    </SafeAreaView>
+    <View className="flex-1 items-center justify-center bg-white gap-8">
+      <Button type="danger" className={ButtonClassNames} onPress={navigateTo('StartSystem')}>Пуск системы</Button>
+      <Button type="secondary" className={ButtonClassNames} onPress={navigateTo('SystemSettings')}>Настройка системы</Button>
+      <Button className={ButtonClassNames} onPress={navigateTo('LaunchHistory')}>История запусков</Button>
+      <Button className={ButtonClassNames} onPress={navigateTo('PositioningSystem')}>Система позиционирования</Button>
+    </View>
   );
 };
 

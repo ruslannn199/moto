@@ -3,7 +3,10 @@ import { NavigationProp } from '@react-navigation/native';
 export type RootStackParamList = {
   Home: undefined;
   Login: undefined;
-  Menu: undefined;
+  StartSystem: undefined;
+  LaunchHistory: undefined;
+  SystemSettings: undefined;
+  PositioningSystem: undefined;
 }
 
 export type Navigation = NavigationProp<RootStackParamList>;

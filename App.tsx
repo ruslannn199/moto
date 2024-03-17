@@ -9,7 +9,6 @@ const App: FC = () => {
   return (
     <AuthProvider>
       <NavigationContainer>
-        <Header />
         <Navigation />
       </NavigationContainer>
     </AuthProvider>

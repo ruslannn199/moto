@@ -2,12 +2,9 @@ import { View, Text, TextInput } from 'react-native';
 import React, { type FC, useState } from 'react';
 import Button from './Button';
 import { useAuth } from '../hooks';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { RootStackParamList } from 'src/types';
 
 const Login: FC = () => {
-  const { user, login } = useAuth();
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const { login } = useAuth();
   const [formState, setFormState] = useState({
     username: '',
     password: '',
@@ -35,7 +32,6 @@ const Login: FC = () => {
         error: null,
       });
       await login(formState.username);
-      navigation.navigate('Home');
     } else {
       setFormState({
         ...formState,
