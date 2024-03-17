@@ -1,18 +1,19 @@
 import './styles.css';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from './src/screens/HomeScreen';
+import { AuthProvider } from './src/hooks';
+import Navigation from './src/components/Navigation';
+import Header from './src/components/Header';
+import type { FC } from 'react';
 
-const Stack = createNativeStackNavigator();
-
-const App = () => {
+const App: FC = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <AuthProvider>
+      <NavigationContainer>
+        <Header />
+        <Navigation />
+      </NavigationContainer>
+    </AuthProvider>
   );
-}
+};
 
 export default App;
