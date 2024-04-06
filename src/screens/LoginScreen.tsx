@@ -1,14 +1,24 @@
-import React, { type FC } from 'react'
+import React, { type FC } from 'react';
 import Login from '../components/Login';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { PropsWithNavigation } from '../types';
 
-const LoginScreen: FC<PropsWithNavigation> = ({ navigation }) => {
+const LoginScreen: FC<PropsWithNavigation> = () => {
   return (
-    <View className="flex-1 items-center bg-white py-4" >
+    <View style={styles.container}>
       <Login />
     </View>
   );
-}
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: 'white',
+    paddingTop: 16,
+    paddingBottom: 16,
+  },
+});
 
 export default LoginScreen;
