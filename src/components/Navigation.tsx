@@ -8,13 +8,29 @@ import StartSystemScreen from '../screens/StartSystemScreen';
 import SystemSettingsScreen from '../screens/SystemSettingsScreen';
 import LaunchHistoryScreen from '../screens/LaunchHistoryScreen';
 import PositioningSystemScreen from '../screens/PositioningSystemScreen';
+import { StyleSheet } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const Navigation: FC = () => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
+  const handleExitButtonClick = async () => {
+    await logout();
+  }
+
   return (
-    <Stack.Navigator screenOptions={{ headerStyle: { backgroundColor: '#fff' } }}>
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: '#fff' },
+        headerRight: () => {
+          if (user) {
+            return <Ionicons onPress={handleExitButtonClick} name="exit" size={24} color="#000" style={styles.exit} />;
+          }
+          return null;
+        },
+      }}
+    >
       {user ? (
         <>
           <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Главная' }} />
@@ -41,5 +57,11 @@ const Navigation: FC = () => {
     </Stack.Navigator>
   );
 };
+
+const styles = StyleSheet.create({
+  exit: {
+    marginRight: 10,
+  },
+});
 
 export default Navigation;

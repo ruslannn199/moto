@@ -8,7 +8,7 @@ type ButtonState = {
   text: React.ReactNode;
 };
 
-const StartSystemScreen: FC<PropsWithNavigation> = () => {
+const StartSystemScreen: FC<PropsWithNavigation> = ({ navigation }) => {
   const [buttonState, setButtonState] = useState<ButtonState>({
     styles: {
       ...styles.button,
@@ -31,6 +31,9 @@ const StartSystemScreen: FC<PropsWithNavigation> = () => {
         },
         text: 'Подключение завершено!',
       });
+      setTimeout(() => {
+        navigation.navigate('Home');
+      }, 1500);
     }, 3000);
   };
   return (
