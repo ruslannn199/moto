@@ -1,6 +1,6 @@
 import './styles.css';
 import { NavigationContainer } from '@react-navigation/native';
-import { AuthProvider } from './src/hooks';
+import { AuthProvider, SettingsProvider } from './src/hooks';
 import Navigation from './src/components/Navigation';
 import Header from './src/components/Header';
 import type { FC } from 'react';
@@ -8,9 +8,11 @@ import type { FC } from 'react';
 const App: FC = () => {
   return (
     <AuthProvider>
-      <NavigationContainer>
-        <Navigation />
-      </NavigationContainer>
+      <SettingsProvider>
+        <NavigationContainer>
+          <Navigation />
+        </NavigationContainer>
+      </SettingsProvider>
     </AuthProvider>
   );
 };

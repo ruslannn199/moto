@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: 10,
     backgroundColor: 'white',
     gap: 32,
   },
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     borderColor: 'black',
-    borderWidth: 4,
+    borderWidth: 2,
     borderRadius: 8,
   },
 });

@@ -1,4 +1,4 @@
-import { type FC, createContext, type PropsWithChildren, useState, useContext } from 'react';
+import { type FC, createContext, type PropsWithChildren, useState, useContext, useEffect } from 'react';
 import { useLocalStorage } from './useLocalStorage';
 
 type AuthContextType = {
@@ -14,8 +14,8 @@ interface AuthProviderProps {
 }
 
 const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
+  const { setItem, removeItem, getItem } = useLocalStorage();
   const [user, setUser] = useState<string | null>(null);
-  const { setItem, removeItem } = useLocalStorage();
 
   const login = async (user: string) => {
     await setItem('user', user);
@@ -26,6 +26,14 @@ const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
     await removeItem('user');
     setUser(null);
   };
+
+  useEffect(() => {
+    getItem('user').then((user) => {
+      if (user) {
+        setUser(user);
+      }
+    });
+  }, []);
 
   return <AuthContext.Provider value={{ user, login, logout }}>{children}</AuthContext.Provider>;
 };

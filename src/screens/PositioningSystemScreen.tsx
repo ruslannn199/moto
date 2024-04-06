@@ -8,7 +8,7 @@ type ButtonState = {
   text: React.ReactNode;
 };
 
-const PositioningSystemScreen: FC<PropsWithNavigation> = ({ navigation }) => {
+const PositioningSystemScreen: FC<PropsWithNavigation> = () => {
   const [buttonState, setButtonState] = useState<ButtonState>({
     styles: {
       ...styles.button,
@@ -21,12 +21,7 @@ const PositioningSystemScreen: FC<PropsWithNavigation> = ({ navigation }) => {
         ...styles.button,
         ...styles.buttonLoading,
       },
-      text: (
-        <Text style={styles.buttonLoadingText}>
-          Подключение...
-          <ActivityIndicator size="small" color="white" />
-        </Text>
-      ),
+      text: <ActivityIndicator size="small" color="white" />,
     });
 
     setTimeout(() => {
@@ -34,16 +29,7 @@ const PositioningSystemScreen: FC<PropsWithNavigation> = ({ navigation }) => {
         styles: {
           ...styles.button,
         },
-        text: (
-          <Text
-            style={styles.buttonLoadingText}
-            onPress={() => {
-              navigation.navigate('Home');
-            }}
-          >
-            Подключение завершено!
-          </Text>
-        ),
+        text: 'Подключение завершено!',
       });
     }, 3000);
   };
